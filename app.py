@@ -3,14 +3,16 @@ import streamlit as st
 from streamlit_chat import message
 from huggingface_hub import InferenceClient
 from modules import vector_store
-from dotenv import load_dotenv
+# from dotenv import load_dotenv
 
-load_dotenv()
+# load_dotenv()
+import streamlit as st
+st.secrets["HF_TOKEN"]
 
 # Initialize Hugging Face Inference Client
 client = InferenceClient(
     provider="novita",
-    api_key=os.environ["HF_TOKEN"],
+    api_key=st.secrets["HF_TOKEN"],
 )
 
 # Load Chroma retriever (cached)
