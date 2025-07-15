@@ -1,0 +1,20 @@
+
+*.pyc
+*.pyo
+*.pyd
+*.db
+*.sqlite3
+*.log
+
+
+# Ignore vector store
+data/chroma_db/
+# Other ignores
+.env
+__pycache__/
+
+myenv/
+
+
+checkingModel.py
+embed.py
