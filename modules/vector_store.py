@@ -27,6 +27,6 @@ def load_chroma_vector_store():
     else:
         # 📄 Load + embed on the fly (for Streamlit Cloud)
         pdf_path = "docs/coal_book.pdf"
-        docs = asyncio.run(load_pdf(file_path))               # load from PDF
+        docs = asyncio.run(load_pdf(pdf_path))               # load from PDF
         chunks = semantic_split(docs)            # split
         return get_or_build_vector_store(chunks) # create + return
