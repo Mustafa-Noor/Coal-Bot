@@ -21,7 +21,14 @@ def get_or_build_vector_store(docs):
         return db
 
 def load_chroma_vector_store():
-    return Chroma(
-        persist_directory=CHROMA_PERSIST_DIR,
-        embedding_function=EMBEDDING_MODEL
-    )
+    if os.path.exists(CHROMA_PERSIST_DIR) and os.listdir(CHROMA_PERSIST_DIR):
+        return Chroma(
+            persist_directory=CHROMA_PERSIST_DIR,
+            embedding_function=EMBEDDING_MODEL
+        )
+    else:
+        # 📄 Load + embed on the fly (for Streamlit Cloud)
+        pdf_path = "docs/coal_book.pdf"
+        docs = load_pdf(pdf_path)                # load from PDF
+        chunks = semantic_split(docs)            # split
+        return get_or_build_vector_store(chunks) # create + return
