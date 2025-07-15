@@ -3,6 +3,8 @@ from langchain.vectorstores import Chroma
 from langchain_community.embeddings import HuggingFaceEmbeddings
 from modules.doc_loader import load_pdf
 from modules.text_splitter import semantic_split
+import asyncio
+
 
 CHROMA_PERSIST_DIR = "data/chroma_db"
 EMBEDDING_MODEL = HuggingFaceEmbeddings(model_name="sentence-transformers/all-MiniLM-L6-v2")
@@ -25,6 +27,6 @@ def load_chroma_vector_store():
     else:
         # 📄 Load + embed on the fly (for Streamlit Cloud)
         pdf_path = "docs/coal_book.pdf"
-        docs = load_pdf(pdf_path)                # load from PDF
+        docs = asyncio.run(load_pdf(file_path))               # load from PDF
         chunks = semantic_split(docs)            # split
         return get_or_build_vector_store(chunks) # create + return
