@@ -6,6 +6,7 @@ from modules.text_splitter import semantic_split
 from chromadb.config import Settings
 import asyncio
 
+os.environ["CHROMA_DB_IMPL"] = "duckdb+parquet"
 
 CHROMA_PERSIST_DIR = "data/chroma_db"
 
