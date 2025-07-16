@@ -7,7 +7,7 @@ from modules import vector_store
 
 # load_dotenv()
 import streamlit as st
-st.secrets["HF_TOKEN"]
+HF_TOKEN = st.secrets["HF_TOKEN"]
 
 # Initialize Hugging Face Inference Client
 client = InferenceClient(
