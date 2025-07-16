@@ -18,7 +18,7 @@ client = InferenceClient(
 # Load Chroma retriever (cached)
 @st.cache_resource
 def get_retriever():
-    db = vector_store.load_chroma_vector_store()
+    db = vector_store.load_faiss_vector_store()
     return db.as_retriever(search_kwargs={"k": 3})
 
 retriever = get_retriever()
