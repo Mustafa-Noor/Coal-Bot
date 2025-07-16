@@ -1,4 +1,6 @@
 import os
+os.environ["CHROMA_DB_IMPL"] = "duckdb+parquet"
+
 from langchain.vectorstores import Chroma
 from langchain_community.embeddings import HuggingFaceEmbeddings
 from modules.doc_loader import load_pdf
@@ -6,7 +8,6 @@ from modules.text_splitter import semantic_split
 from chromadb.config import Settings
 import asyncio
 
-os.environ["CHROMA_DB_IMPL"] = "duckdb+parquet"
 
 CHROMA_PERSIST_DIR = "data/chroma_db"
 
